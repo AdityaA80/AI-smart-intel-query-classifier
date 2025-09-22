@@ -47,6 +47,19 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // AI Tool Colors
+        tech: {
+          primary: "hsl(var(--tech-primary))",
+          secondary: "hsl(var(--tech-secondary))",
+          success: "hsl(var(--tech-success))",
+          warning: "hsl(var(--tech-warning))",
+        },
+        category: {
+          billing: "hsl(var(--category-billing))",
+          technical: "hsl(var(--category-technical))",
+          general: "hsl(var(--category-general))",
+          complaint: "hsl(var(--category-complaint))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -84,6 +97,20 @@ export default {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "pulse-soft": "pulse 3s infinite",
+        "fade-in": "fadeIn 0.5s ease-out",
+        "slide-up": "slideUp 0.5s ease-out",
+      },
+      backgroundImage: {
+        "tech-gradient": "var(--tech-gradient)",
+        "tech-gradient-subtle": "var(--tech-gradient-subtle)",
+      },
+      boxShadow: {
+        "tech-glow": "var(--tech-glow)",
+        "tech-card": "var(--tech-card-glow)",
+      },
+      transitionProperty: {
+        "smooth": "var(--transition-smooth)",
       },
     },
   },
