@@ -2,9 +2,11 @@ import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import QueryClassifier from "@/components/QueryClassifier";
 import Analytics from "@/components/Analytics";
+import PromptEnhancer from "@/components/PromptEnhancer";
+import AchievementStats from "@/components/AchievementStats";
 import ThemeToggle from "@/components/ThemeToggle";
 import { QueryAnalyticsProvider } from "@/components/QueryAnalyticsProvider";
-import { Brain, BarChart3, Sparkles } from "lucide-react";
+import { Brain, BarChart3, Wand2 } from "lucide-react";
 
 const Index = () => {
   return (
@@ -24,23 +26,28 @@ const Index = () => {
                 </div>
               </div>
               <div className="flex items-center space-x-4">
-                <div className="hidden md:flex items-center space-x-2 text-tech-success">
-                  <Sparkles className="h-4 w-4" />
-                  <span className="text-sm font-medium">AI Powered</span>
-                </div>
                 <ThemeToggle />
               </div>
             </div>
           </div>
         </header>
 
+        {/* Achievement Stats */}
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <AchievementStats />
+        </section>
+
         {/* Main Content */}
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <Tabs defaultValue="classifier" className="space-y-6">
-            <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 bg-secondary">
+            <TabsList className="grid w-full max-w-2xl mx-auto grid-cols-3 bg-secondary">
               <TabsTrigger value="classifier" className="flex items-center gap-2">
                 <Brain className="h-4 w-4" />
                 Classifier
+              </TabsTrigger>
+              <TabsTrigger value="enhancer" className="flex items-center gap-2">
+                <Wand2 className="h-4 w-4" />
+                Enhancer
               </TabsTrigger>
               <TabsTrigger value="analytics" className="flex items-center gap-2">
                 <BarChart3 className="h-4 w-4" />
@@ -59,6 +66,19 @@ const Index = () => {
                 </p>
               </div>
               <QueryClassifier />
+            </TabsContent>
+
+            <TabsContent value="enhancer" className="space-y-6">
+              <div className="text-center mb-8">
+                <h2 className="text-3xl font-bold text-primary mb-2">
+                  AI Prompt Enhancement
+                </h2>
+                <p className="text-muted-foreground max-w-2xl mx-auto">
+                  Transform basic customer queries into detailed, actionable support requests 
+                  with context analysis and response templates.
+                </p>
+              </div>
+              <PromptEnhancer />
             </TabsContent>
 
             <TabsContent value="analytics" className="space-y-6">
