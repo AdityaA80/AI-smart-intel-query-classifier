@@ -1,51 +1,37 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
 import { TrendingUp, MessageSquare, Target, Clock } from "lucide-react";
+import { useQueryAnalytics } from "./QueryAnalyticsProvider";
 
 const Analytics = () => {
-  // Mock data - in a real app, this would come from your backend
-  const categoryData = [
-    { name: "Technical Issues", value: 35, color: "hsl(0 84% 60%)" },
-    { name: "Billing", value: 28, color: "hsl(45 93% 58%)" },
-    { name: "General Inquiries", value: 25, color: "hsl(262 80% 50%)" },
-    { name: "Complaints", value: 12, color: "hsl(355 70% 54%)" },
-  ];
-
-  const dailyData = [
-    { day: "Mon", queries: 45, resolved: 42 },
-    { day: "Tue", queries: 52, resolved: 48 },
-    { day: "Wed", queries: 38, resolved: 36 },
-    { day: "Thu", queries: 61, resolved: 58 },
-    { day: "Fri", queries: 55, resolved: 52 },
-    { day: "Sat", queries: 29, resolved: 27 },
-    { day: "Sun", queries: 33, resolved: 31 },
-  ];
+  const { getAnalyticsData } = useQueryAnalytics();
+  const data = getAnalyticsData();
 
   const stats = [
     {
       title: "Total Queries",
-      value: "1,247",
-      change: "+12%",
+      value: data.totalQueries.toString(),
+      change: `+${data.weeklyGrowth}%`,
       icon: MessageSquare,
       color: "tech-primary"
     },
     {
       title: "Avg. Accuracy",
-      value: "94.2%",
+      value: `${data.avgAccuracy.toFixed(1)}%`,
       change: "+2.1%",
       icon: Target,
       color: "tech-success"
     },
     {
       title: "Response Time",
-      value: "1.3s",
+      value: `${data.responseTime}s`,
       change: "-0.2s",
       icon: Clock,
       color: "tech-warning"
     },
     {
       title: "Weekly Growth",
-      value: "+23%",
+      value: `+${data.weeklyGrowth}%`,
       change: "+5%",
       icon: TrendingUp,
       color: "tech-secondary"
@@ -96,7 +82,7 @@ const Analytics = () => {
             <ResponsiveContainer width="100%" height={300}>
               <PieChart>
                 <Pie
-                  data={categoryData}
+                  data={data.categoryData}
                   cx="50%"
                   cy="50%"
                   innerRadius={60}
@@ -104,7 +90,7 @@ const Analytics = () => {
                   paddingAngle={5}
                   dataKey="value"
                 >
-                  {categoryData.map((entry, index) => (
+                  {data.categoryData.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
                 </Pie>
@@ -112,7 +98,7 @@ const Analytics = () => {
               </PieChart>
             </ResponsiveContainer>
             <div className="mt-4 space-y-2">
-              {categoryData.map((item, index) => (
+              {data.categoryData.map((item, index) => (
                 <div key={index} className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <div
@@ -136,7 +122,7 @@ const Analytics = () => {
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={dailyData}>
+              <BarChart data={data.dailyData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
                 <XAxis dataKey="day" stroke="hsl(var(--muted-foreground))" />
                 <YAxis stroke="hsl(var(--muted-foreground))" />

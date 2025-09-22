@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Brain, Send, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useQueryAnalytics } from "./QueryAnalyticsProvider";
 
 interface ClassificationResult {
   category: string;
@@ -102,6 +103,7 @@ const QueryClassifier = () => {
   const [result, setResult] = useState<ClassificationResult | null>(null);
   const [history, setHistory] = useState<QueryHistory[]>([]);
   const { toast } = useToast();
+  const { addQuery } = useQueryAnalytics();
 
   const handleClassify = async () => {
     if (!query.trim()) {
@@ -126,6 +128,15 @@ const QueryClassifier = () => {
       };
       
       setHistory(prev => [historyEntry, ...prev.slice(0, 9)]);
+      
+      // Add to analytics
+      addQuery({
+        id: historyEntry.id,
+        query,
+        category: classification.category,
+        confidence: classification.confidence,
+        timestamp: new Date()
+      });
       
       toast({
         title: "Query classified successfully",
