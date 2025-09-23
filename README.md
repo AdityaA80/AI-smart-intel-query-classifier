@@ -1,22 +1,21 @@
-# Welcome to your Lovable project
+# Welcome to AI Query Clasifier project
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/c74074e6-83eb-456b-aa24-790b335e7ef1
+**URL** https://ai-smart-intel-query-classifier.vercel.app/
 
 ## How can I edit this code?
 
 There are several ways of editing your application.
 
-**Use Lovable**
+**Use gpt**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/c74074e6-83eb-456b-aa24-790b335e7ef1) and start prompting.
 
-Changes made via Lovable will be committed automatically to this repo.
+Changes made via user will be committed automatically to this repo.
 
 **Use your preferred IDE**
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in cursor.
 
 The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
@@ -62,9 +61,10 @@ This project is built with:
 
 ## How can I deploy this project?
 
-Simply open [Lovable](https://lovable.dev/projects/c74074e6-83eb-456b-aa24-790b335e7ef1) and click on Share -> Publish.
+Simply open Vercel.app and register connect github select repo click on deploy -> its Live.
 
-## Can I connect a custom domain to my Lovable project?
+## Can I connect a custom domain to my vercel project?
+yes at time of deploy give name u wanted
 
 Yes, you can!
 
